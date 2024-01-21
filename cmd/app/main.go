@@ -1,11 +1,11 @@
 package main
 
 import (
-	"fmt"
+	"todo-golang/internal/app"
 	"todo-golang/pkg/config"
 )
 
 func main() {
-	config := config.GetInstance().HttpServer
-	fmt.Println(config)
+	config := config.GetInstance()
+	app.Run(config)
 }
