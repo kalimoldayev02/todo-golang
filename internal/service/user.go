@@ -9,12 +9,12 @@ type UserService struct {
 	repo repository.User
 }
 
-func NewUserService(repo repository.UserRepository) *UserService {
+func NewUserService(repo repository.User) *UserService {
 	return &UserService{
 		repo: repo,
 	}
 }
 
 func (s *UserService) GetUsers() ([]model.User, error) {
-	return nil, nil
+	return s.repo.GetUsers()
 }

@@ -6,6 +6,7 @@ import (
 	"todo-golang/internal/handler"
 	"todo-golang/internal/repository"
 	"todo-golang/internal/router"
+	"todo-golang/internal/service"
 	"todo-golang/pkg/config"
 
 	"github.com/gofiber/fiber/v2"
@@ -25,20 +26,23 @@ func Run(cfg *config.Config) {
 	}
 
 	// repository
-	repository.NewRespository(db)
+	repo := repository.NewRespository(db)
 
 	// service
+	service := service.NewService(repo)
 
 	// HTTP Server
 	app := router.NewRouter()
-	initRoutes(app)
+	initRoutes(app, service)
 
 	log.Fatal(app.Listen(fmt.Sprintf(":%s", cfg.HttpServer.Port)))
 }
 
-func initRoutes(app *fiber.App) {
-	h := handler.New()
-	h.InitRoutes(app)
+func initRoutes(app *fiber.App, service *service.Service) {
+	h := handler.NewHandler(service)
+
+	api := app
+	api.Group("/api").Get("/users", h.GetUsers)
 }
 
 func intiDb(c *config.Config) (*gorm.DB, error) {

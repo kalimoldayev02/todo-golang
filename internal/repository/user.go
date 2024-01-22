@@ -15,5 +15,7 @@ func NewUserRespository(db *gorm.DB) *UserRepository {
 }
 
 func (r *UserRepository) GetUsers() ([]model.User, error) {
-	return nil, nil
+	user := model.User{}
+
+	return []model.User{user}, nil
 }
