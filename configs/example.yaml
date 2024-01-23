@@ -11,4 +11,4 @@ database:
   port: ""
   user: ""
   password: ""
-  name: ""
+  db_name: ""

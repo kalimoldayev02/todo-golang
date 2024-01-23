@@ -1,9 +1,8 @@
 package repository
 
 import (
+	"database/sql"
 	"todo-golang/internal/model"
-
-	"gorm.io/gorm"
 )
 
 type User interface {
@@ -14,7 +13,7 @@ type Resporitory struct {
 	User
 }
 
-func NewRespository(db *gorm.DB) *Resporitory {
+func NewRespository(db *sql.DB) *Resporitory {
 	return &Resporitory{
 		User: NewUserRespository(db),
 	}

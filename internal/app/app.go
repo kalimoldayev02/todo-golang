@@ -1,6 +1,7 @@
 package app
 
 import (
+	"database/sql"
 	"fmt"
 	"log"
 	"todo-golang/internal/handler"
@@ -10,8 +11,6 @@ import (
 	"todo-golang/pkg/config"
 
 	"github.com/gofiber/fiber/v2"
-	"gorm.io/driver/postgres"
-	"gorm.io/gorm"
 )
 
 const (
@@ -45,15 +44,14 @@ func initRoutes(app *fiber.App, service *service.Service) {
 	api.Group("/api").Get("/users", h.GetUsers)
 }
 
-func intiDb(c *config.Config) (*gorm.DB, error) {
+func intiDb(c *config.Config) (*sql.DB, error) {
 	var dsn string
 	cfg := c.DataBase
 
 	switch cfg.Driver {
 	case "postgres":
 		dsn = fmt.Sprintf("host=%s user=%s dbname=%s password=%s sslmode=disable", cfg.Host, cfg.User, cfg.TableName, cfg.Password)
-		return gorm.Open(postgres.Open(dsn), &gorm.Config{})
 	}
 
-	return nil, fmt.Errorf("can not init DB")
+	return sql.Open(cfg.Driver, dsn)
 }

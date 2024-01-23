@@ -1,21 +1,19 @@
 package repository
 
 import (
+	"database/sql"
 	"todo-golang/internal/model"
-
-	"gorm.io/gorm"
 )
 
 type UserRepository struct {
-	db *gorm.DB
+	db *sql.DB
 }
 
-func NewUserRespository(db *gorm.DB) *UserRepository {
+func NewUserRespository(db *sql.DB) *UserRepository {
 	return &UserRepository{db: db}
 }
 
 func (r *UserRepository) GetUsers() ([]model.User, error) {
-	user := model.User{}
-
-	return []model.User{user}, nil
+	users := []model.User{}
+	return users, nil
 }

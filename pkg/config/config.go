@@ -28,12 +28,12 @@ type HttpServer struct {
 }
 
 type DataBase struct {
-	Driver    string `yaml:"driver" env:"DB_HOST"`
-	Host      string `yaml:"host" env:"DB_HOST"`
-	Port      string `yaml:"port" env:"DB_PORT"`
-	User      string `yaml:"user" env:"DB_USER"`
-	Password  string `yaml:"password" env:"DB_PASSWORD"`
-	TableName string `yaml:"table_name" env:"DB_TABLE_NAME"`
+	Driver   string `yaml:"driver" env:"DB_HOST"`
+	Host     string `yaml:"host" env:"DB_HOST"`
+	Port     string `yaml:"port" env:"DB_PORT"`
+	User     string `yaml:"user" env:"DB_USER"`
+	Password string `yaml:"password" env:"DB_PASSWORD"`
+	DBName   string `yaml:"db_name" env:"DB_NAME"`
 }
 
 func GetInstance() *Config {
