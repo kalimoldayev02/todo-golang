@@ -12,3 +12,4 @@ database:
   user: ""
   password: ""
   db_name: ""
+  driver: ""
