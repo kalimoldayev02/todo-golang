@@ -90,7 +90,7 @@ func (p *Postgres) FetchAll() [][]interface{} {
 	if err != nil {
 		log.Fatal(err)
 	}
-	defer rows.Close()
+	defer p.Disconnect()
 
 	columns, err := rows.Columns()
 	if err != nil {

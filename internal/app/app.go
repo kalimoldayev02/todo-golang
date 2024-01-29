@@ -40,8 +40,9 @@ func Run(cfg *config.Config) {
 func initRoutes(app *fiber.App, service *service.Service) {
 	h := handler.NewHandler(service)
 
-	api := app
-	api.Group("/api").Get("/users", h.GetUsers)
+	api := app.Group("/api")
+	api.Get("/users", h.GetUsers)
+	api.Post("/users", h.CreateUser)
 }
 
 func intiDb(c *config.Config) (*sql.DB, error) {
@@ -50,7 +51,7 @@ func intiDb(c *config.Config) (*sql.DB, error) {
 
 	switch cfg.Driver {
 	case "postgres":
-		dsn = fmt.Sprintf("host=%s user=%s dbname=%s password=%s sslmode=disable", cfg.Host, cfg.User, cfg.TableName, cfg.Password)
+		dsn = fmt.Sprintf("host=%s user=%s dbname=%s password=%s sslmode=disable", cfg.Host, cfg.User, cfg.DBName, cfg.Password)
 	}
 
 	return sql.Open(cfg.Driver, dsn)
