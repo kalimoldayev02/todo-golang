@@ -7,6 +7,7 @@ import (
 
 type Auth interface {
 	SignUp(signUpDto dto.SignUpDto) (int, error)
+	SignIn(signInDto dto.SignInDto) (string, error)
 }
 
 type Service struct {

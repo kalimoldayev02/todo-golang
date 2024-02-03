@@ -3,6 +3,7 @@ package repositories
 import (
 	"database/sql"
 	"todo-golang/app/dto"
+	"todo-golang/app/entities"
 )
 
 const (
@@ -10,7 +11,8 @@ const (
 )
 
 type Auth interface {
-	SignUp(signUpDto dto.SignUpDto) (int, error)
+	CreateUser(signUpDto dto.SignUpDto) (int, error)
+	GetUserByCredentials(email, passwors string) (entities.User, error)
 }
 
 type Respository struct {
