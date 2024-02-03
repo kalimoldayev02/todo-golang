@@ -13,3 +13,5 @@ database:
   password: ""
   db_name: ""
   driver: ""
+
+salt: ""

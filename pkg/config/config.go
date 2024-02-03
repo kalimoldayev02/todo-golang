@@ -18,6 +18,7 @@ var (
 type Config struct {
 	HttpServer `yaml:"http_server"`
 	DataBase   `yaml:"database"`
+	Salt       string `yaml:"salt"`
 }
 
 type HttpServer struct {

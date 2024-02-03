@@ -3,6 +3,7 @@ package services
 import (
 	"todo-golang/app/dto"
 	"todo-golang/app/repositories"
+	"todo-golang/pkg/utils"
 )
 
 type AuthService struct {
@@ -16,5 +17,7 @@ func NewAuthSerive(repo repositories.Auth) *AuthService {
 }
 
 func (a *AuthService) SignUp(signUpDto dto.SignUpDto) (int, error) {
+	signUpDto.Password = utils.GeneratePasswordHash(signUpDto.Password)
+
 	return a.repository.SignUp(signUpDto)
 }
