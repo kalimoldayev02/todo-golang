@@ -1,7 +1,7 @@
 package main
 
 import (
-	"todo-golang/internal/app"
+	"todo-golang/app"
 	"todo-golang/pkg/config"
 
 	_ "github.com/lib/pq"

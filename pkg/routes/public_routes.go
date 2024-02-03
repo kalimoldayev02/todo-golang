@@ -6,10 +6,10 @@ import (
 	"github.com/gofiber/fiber/v2"
 )
 
-func PublicRoutes(app *fiber.App) {
+func PublicRoutes(app *fiber.App, controller *controllers.Controller) {
 	// Создаю новую группу роутов
 	route := app.Group("/api")
 
 	// Роуты users
-	route.Get("/sign-up", controllers.SignUp) // TODO: auth_controller
+	route.Post("/sign-up", controller.SignUp) // TODO: auth_controller
 }
